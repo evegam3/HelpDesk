@@ -1,22 +1,24 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Domain.models
 {
-    [Table("log_time")]
+    [Table("LogTime")]
     public class LogTime
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        [Column("log_time_id")]
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Column("LogTimeId")]
         public int LogTimeId { get; set; }
-        [Column("user_id")]
-        public int UserId { get; set; }
-        [Column("ticket_id")]
+        [Column("UserId")]
+        public string UserId { get; set; }
+        [Column("TicketId")]
         public int TicketId { get; set; }
-        [Column("description")]
+        [Column("Description")]
         public string Description { get; set; }
-        [Column("date")]
+        [Column("Date")]
         public DateTime Date { get; set; }
-        [Column("hours")]
+        [Column("Hours")]
         public decimal Hours { get; set; }
         
         public User User { get; set; }

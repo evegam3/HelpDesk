@@ -1,19 +1,22 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 namespace Domain.models
 {
+    [Table("Priorities")]
     public class Priority
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        [Column("priority_id")]
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Column("PriorityId")]
         public int PriorityId { get; set; }
-        [Column("name")]
+        [Column("Name")]
         public string Name { get; set; }
-        [Column("description")]
-        public string Description { get; set; }
-        [Column("created_at")]
+        [Column("Description")]
+        public string? Description { get; set; }
+        [Column("CreatedAt")]
         public DateTime CreatedAt { get; set; }
-        [Column("updated_at")]
-        public DateTime? UpdateddAt { get; set; }
+        [Column("UpdatedAt")]
+        public DateTime? UpdatedAt { get; set; }
         public ICollection<Ticket> Tickets { get; set; }
     }
 }

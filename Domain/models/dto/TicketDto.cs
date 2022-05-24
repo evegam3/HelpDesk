@@ -11,7 +11,7 @@
         public int CategoryId { get; set; }
         public int StatusId { get; set; }
         public DateTime CreatedAt { get; set; }
-        public DateTime? UpdateddAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
         public UserDto ReportedByUser { get; set; }
         public UserDto AssignedToUser { get; set; }
         public PriorityDto Priority { get; set; }

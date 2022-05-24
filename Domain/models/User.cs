@@ -1,30 +1,30 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using Microsoft.AspNetCore.Identity;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Domain.models
 {
     [Table("users")]
-    public class User
+    public class User : IdentityUser
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        [Column("user_id")]
-        public int UserId { get; set; }
-        [Column("deparment_id")]
+        [Column("DeparmentId")]
         public int DeparmentId { get; set; }
-        [Column("name")]
+        [PersonalData]
+        [Column("Name")]
         public string Name { get; set; }
-        [Column("lastname")]
+        [Column("Lastname")]
+        [PersonalData]
         public string Lastname { get; set; }
-        [Column("password")]
-        public string Password { get; set; }
-        [Column("email")]
-        public string Email { get; set; }
-        [Column("created_at")]
+        [Column("CreatedAt")]
         public DateTime CreatedAt { get; set; }
-        [Column("updated_at")]
-        public DateTime? UpdateddAt { get; set; }
+        [Column("UpdatedAt")]
+        public DateTime? UpdatedAt { get; set; }
+        [Display(Name = "Remember me?")]
+        [Column("RememberMe")]
+        public bool RememberMe { get; set; }
+
 
         public Deparment Deparment { get; set; }
-        public ICollection<RolUser> RolUsers { get; set; }
         public ICollection<Ticket> AssignedTickets { get; set; }
         public ICollection<Ticket> ReportedTickets { get; set; }
         public ICollection<Comment> Comments { get; set; }

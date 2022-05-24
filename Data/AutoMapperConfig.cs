@@ -20,14 +20,8 @@ namespace Data
             CreateMap<Deparment, DeparmentDto>();
             CreateMap<DeparmentDto, Deparment>();
 
-            CreateMap<Rol, RolDto>();
-            CreateMap<RolDto, Rol>();
-
             CreateMap<User, UserDto>();
             CreateMap<UserDto, User>();
-
-            CreateMap<RolUser, RolUserDto>();
-            CreateMap<RolUserDto, RolUser>();
 
             CreateMap<Ticket, TicketDto>();
             CreateMap<TicketDto, Ticket>();

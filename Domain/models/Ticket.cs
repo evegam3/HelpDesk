@@ -1,31 +1,33 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Domain.models
 {
-    [Table("tickets")]
+    [Table("Tickets")]
     public class Ticket
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        [Column("ticket_id")]
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Column("TicketId")]
         public int TicketId { get; set; }
-        [Column("description")]
+        [Column("Description")]
         public string Description { get; set; }
-        [Column("case_number")]
+        [Column("CaseNumber")]
         public int CaseNumber { get; set; }
-        [Column("reported_by")]
-        public int ReportedBy { get; set; }
-        [Column("assigned_to")]
-        public int AssignedTo { get; set; }
-        [Column("priority_id")]
+        [Column("ReportedBy")]
+        public string ReportedBy { get; set; }
+        [Column("AssignedTo")]
+        public string AssignedTo { get; set; }
+        [Column("PriorityId")]
         public int PriorityId { get; set; }
-        [Column("category_id")]
+        [Column("CategoryId")]
         public int CategoryId { get; set; }
-        [Column("status_id")]
+        [Column("StatusId")]
         public int StatusId { get; set; }
-        [Column("created_at")]
+        [Column("CreatedAt")]
         public DateTime CreatedAt { get; set; }
-        [Column("updated_at")]
-        public DateTime? UpdateddAt { get; set; }
+        [Column("UpdatedAt")]
+        public DateTime? UpdatedAt { get; set; }
         public User ReportedByUser { get; set; }
         public User AssignedToUser { get; set; }
         public Priority Priority { get; set; }

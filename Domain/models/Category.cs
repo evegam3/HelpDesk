@@ -3,21 +3,21 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Domain.models
 {
-    [Table("categories")]
+    [Table("Categories")]
     public class Category
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Column("category_id")]
+        [Column("CategoryId")]
         public int CategoryId { get; set; }
-        [Column("name")]
+        [Column("Name")]
         public string Name { get; set; }
-        [Column("description")]
+        [Column("Description")]
         public string? Description { get; set; }
-        [Column("created_at")]
+        [Column("CreatedAt")]
         public DateTime CreatedAt { get; set; }
-        [Column("updated_at")]
-        public DateTime? UpdateddAt { get; set; }
+        [Column("UpdatedAt")]
+        public DateTime? UpdatedAt { get; set; }
         public ICollection<Ticket> Tickets { get; set; }
     }
 }

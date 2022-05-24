@@ -1,21 +1,24 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 
 namespace Domain.models
 {
+    [Table("Statuses")]
     public  class Status
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        [Column("status_id")]
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Column("StatusId")]
         public int StatusId { get; set; }
-        [Column("name")]
+        [Column("Name")]
         public string Name { get; set; }
-        [Column("description")]
+        [Column("Description")]
         public string Description { get; set; }
-        [Column("created_at")]
+        [Column("CreatedAt")]
         public DateTime CreatedAt { get; set; }
-        [Column("updated_at")]
-        public DateTime? UpdateddAt { get; set; }
+        [Column("UpdatedAt")]
+        public DateTime? UpdatedAt { get; set; }
         public ICollection<Ticket> Tickets { get; set; }
     }
 }

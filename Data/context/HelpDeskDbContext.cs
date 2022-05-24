@@ -1,22 +1,22 @@
 ﻿using Domain.models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection.Emit;
 
 namespace Data.context
 {
-    public class HelpDeskDbContext : DbContext
+    public class HelpDeskDbContext : IdentityDbContext<User>
     {
-        public HelpDeskDbContext(DbContextOptions<HelpDeskDbContext> options) : base(options)
+        public HelpDeskDbContext(DbContextOptions options) : base(options)
         {
-
         }
 
         public DbSet<Category> Categories { get; set; }
         public DbSet<Priority> Priorities { get; set; }
         public DbSet<Status> Statuses { get; set; }
-        public DbSet<Rol> Rols { get; set; }
         public DbSet<Deparment> Deparments { get; set; }
         public DbSet<User> Users { get; set; }
-        public DbSet<RolUser> RolUsers { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Ticket> Tickets { get; set; }
         public DbSet<LogTime> LogTimes { get; set; }
@@ -24,15 +24,9 @@ namespace Data.context
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            base.OnModelCreating(builder);
+
             // Config foreign keys
-            builder.Entity<Deparment>(x => x
-                .HasMany(c => c.Users)
-                .WithOne(e => e.Deparment)
-            );
-            builder.Entity<User>(x => x
-                .HasMany(c => c.RolUsers)
-                .WithOne(e => e.User)
-            );
             builder.Entity<User>(x => x
                 .HasMany(c => c.ReportedTickets)
                 .WithOne(e => e.ReportedByUser)
@@ -48,10 +42,6 @@ namespace Data.context
             builder.Entity<User>(x => x
                .HasMany(c => c.LogTimes)
                .WithOne(e => e.User)
-            );
-            builder.Entity<Rol>(x => x
-               .HasMany(c => c.RolUsers)
-               .WithOne(e => e.Rol)
             );
             builder.Entity<Category>(x => x
              .HasKey(c => c.CategoryId)
@@ -79,8 +69,14 @@ namespace Data.context
             builder.Entity<Ticket>(x => x
              .HasMany(c => c.LogTimes)
              .WithOne(e => e.Ticket)
-           );
+            );
+            builder.Entity<User>().ToTable("Users");
+            builder.Entity<IdentityRole>().ToTable("Roles");
+            builder.Entity<IdentityUserClaim<string>>().ToTable("UserClaim");
+            builder.Entity<IdentityRoleClaim<string>>().ToTable("RoleClaims");
+            builder.Entity<IdentityUserRole<string>>().ToTable("UserRoles");
+            builder.Entity<IdentityUserLogin<string>>().ToTable("UserLogins");
+            builder.Entity<IdentityUserToken<string>>().ToTable("UserTokens");
         }
-
     }
 }

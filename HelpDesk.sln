@@ -3,11 +3,16 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelpDesk", "HelpDesk\HelpDesk.csproj", "{B216A087-1415-42FA-B464-36B3A9495264}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelpDesk", "HelpDesk\HelpDesk.csproj", "{B216A087-1415-42FA-B464-36B3A9495264}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{005FA307-1CEE-4C7A-83C9-126190C8D638}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data", "Data\Data.csproj", "{005FA307-1CEE-4C7A-83C9-126190C8D638}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{B5DE64B3-4DEC-4919-A691-AC048A33E3B1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{B5DE64B3-4DEC-4919-A691-AC048A33E3B1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{FEF49992-21A1-49E3-B87C-8E82ADF0676A}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

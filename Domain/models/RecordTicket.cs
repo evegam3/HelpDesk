@@ -1,21 +1,23 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Domain.models
 {
-    [Table("records_tickets")]
+    [Table("RecordsTickets")]
     public class RecordTicket
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        [Column("record_ticket_id")]
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Column("RecordTicketId")]
         public int RecordTicketId { get; set; }
-        [Column("ticket_id")]
-        public string TicketId { get; set; }
-        [Column("description")]
+        [Column("TicketId")]
+        public int TicketId { get; set; }
+        [Column("Description")]
         public string Description { get; set; }
-        [Column("created_at")]
+        [Column("CreatedAt")]
         public DateTime CreatedAt { get; set; }
-        [Column("updated_at")]
-        public DateTime? UpdateddAt { get; set; }
+        [Column("UpdatedAt")]
+        public DateTime? UpdatedAt { get; set; }
         public Ticket Ticket { get; set; }
     }
 }

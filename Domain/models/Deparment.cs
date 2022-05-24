@@ -1,22 +1,23 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Domain.models
 {
+    [Table("Deparments")]
     public class Deparment
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        [Column("deparment_id")]
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Column("DeparmentId")]
         public int DeparmentId { get; set; }
-#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
-        [Column("name")]
+        [Column("Name")]
         public string Name { get; set; }
-        [Column("description")]
-        public string Description { get; set; }
-#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
-        [Column("created_at")]
+        [Column("Description")]
+        public string? Description { get; set; }
+        [Column("CreatedAt")]
         public DateTime CreatedAt { get; set; }
-        [Column("updated_at")]
-        public DateTime? UpdateddAt { get; set; }
+        [Column("UpdatedAt")]
+        public DateTime? UpdatedAt { get; set; }
 
         public ICollection<User> Users { get; set; }
     }

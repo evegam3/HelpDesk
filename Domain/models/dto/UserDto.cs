@@ -9,10 +9,9 @@
         public string Password { get; set; }
         public string Email { get; set; }
         public DateTime CreatedAt { get; set; }
-        public DateTime? UpdateddAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
 
         public DeparmentDto Deparment { get; set; }
-        public List<RolUserDto> RolUsers { get; set; }
         public List<TicketDto> AssignedTickets { get; set; }
         public List<TicketDto> ReportedTickets { get; set; }
         public List<CommentDto> Comments { get; set; }

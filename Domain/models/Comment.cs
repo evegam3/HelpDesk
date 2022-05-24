@@ -1,24 +1,26 @@
 ﻿
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Domain.models
 {
-    [Table("comments")]
+    [Table("Comments")]
     public class Comment
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        [Column("comment_id")]
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Column("CommentId")]
         public int CommentId { get; set; }
-        [Column("user_id")]
-        public int UserId { get; set; }
-        [Column("ticket_id")]
+        [Column("UserId")]
+        public string UserId { get; set; }
+        [Column("TicketId")]
         public int TicketId { get; set; }
-        [Column("description")]
+        [Column("Description")]
         public string Description { get; set; }
-        [Column("created_at")]
+        [Column("CreatedAt")]
         public DateTime CreatedAt { get; set; }
-        [Column("updated_at")]
-        public DateTime? UpdateddAt { get; set; }
+        [Column("UpdatedAt")]
+        public DateTime? UpdatedAt { get; set; }
 
         public User User { get; set; }
         public Ticket Ticket { get; set; }
