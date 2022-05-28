@@ -19,7 +19,7 @@ namespace Domain.models
         public DateTime CreatedAt { get; set; }
         [Column("UpdatedAt")]
         public DateTime? UpdatedAt { get; set; }
-        [Display(Name = "Remember me?")]
+        [Display(Name = "Recuerdame?")]
         [Column("RememberMe")]
         public bool RememberMe { get; set; }
 

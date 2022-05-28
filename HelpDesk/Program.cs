@@ -51,22 +51,29 @@ builder.Services.AddScoped<ICommentService, CommentService>();
 
 #endregion
 
-//builder.Services.ConfigureApplicationCookie(options => {
-//    // Override the default events
-//    options.Events = new CookieAuthenticationEvents
-//    {
-//        OnRedirectToAccessDenied = ReplaceRedirectorWithStatusCode(HttpStatusCode.Forbidden),
-//        OnRedirectToLogin = ReplaceRedirectorWithStatusCode(HttpStatusCode.Unauthorized)
-//    };
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    //// Override the default events
+    //options.Events = new CookieAuthenticationEvents
+    //{
+    //    OnRedirectToAccessDenied = ReplaceRedirectorWithStatusCode(HttpStatusCode.Forbidden),
+    //    OnRedirectToLogin = ReplaceRedirectorWithStatusCode(HttpStatusCode.Unauthorized)
+    //};
 
-//    // Configure our application cookie
-//    options.Cookie.Name = ".applicationname";
-//    options.Cookie.HttpOnly = true; // This must be true to prevent XSS
-//    options.Cookie.SameSite = SameSiteMode.None;
-//    options.Cookie.SecurePolicy = CookieSecurePolicy.None; // Should ideally be "Always"
+    //// Configure our application cookie
+    //options.Cookie.Name = ".applicationname";
+    //options.Cookie.HttpOnly = true; // This must be true to prevent XSS
+    //options.Cookie.SameSite = SameSiteMode.None;
+    //options.Cookie.SecurePolicy = CookieSecurePolicy.None; // Should ideally be "Always"
 
-//    options.SlidingExpiration = true;
-//});
+    //options.SlidingExpiration = true;
+    
+    //Location for your Custom Access Denied Page
+    //options.AccessDeniedPath = "Account/AccessDenied";
+
+    //Location for your Custom Login Page
+    options.LoginPath = "/Identity/Account/Login";
+});
 
 var app = builder.Build();
 
