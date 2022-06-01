@@ -28,7 +28,9 @@ namespace Domain.models
         public DateTime CreatedAt { get; set; }
         [Column("UpdatedAt")]
         public DateTime? UpdatedAt { get; set; }
+        [NotMapped]
         public User ReportedByUser { get; set; }
+        [NotMapped]
         public User AssignedToUser { get; set; }
         public Priority Priority { get; set; }
         public Category Category { get; set; }

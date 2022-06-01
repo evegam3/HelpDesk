@@ -1,4 +1,4 @@
-using AutoMapper;
+﻿using AutoMapper;
 using Data;
 using Data.context;
 using Data.repositories;
@@ -6,12 +6,16 @@ using Data.services;
 using Domain.models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using HelpDesk.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("HelpDeskContext") ?? throw new InvalidOperationException("Connection string 'HelpDeskContextConnection' not found.");
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddDbContext<HelpDeskContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("HelpDeskContext") ?? throw new InvalidOperationException("Connection string 'HelpDeskContext' not found.")));
 builder.Services.AddDbContext<HelpDeskDbContext>(options =>
     options.UseSqlServer(connectionString ?? throw new InvalidOperationException("Connection string 'HelpDeskContextConnection' not found."))
     ,ServiceLifetime.Singleton);
