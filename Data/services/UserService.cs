@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Data.repositories;
+using Domain.models;
 using Domain.models.dto;
 
 namespace Data.services
@@ -23,6 +24,17 @@ namespace Data.services
         public async Task<UserDto> GetUserById(string userId)
         {
             return _autoMapper.Map<UserDto>(await _userRepository.GetUserById(userId));
+        }
+
+        public async Task UpdateUserAsync(UserDto userDto)
+        {
+            var user = await _userRepository.GetUserById(userDto.Id);
+
+            if (user != null)
+            {
+                _autoMapper.Map(userDto, user);
+                await _userRepository.UpdateUser(user);
+            }
         }
     }
 }

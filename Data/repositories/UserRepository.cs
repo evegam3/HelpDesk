@@ -16,7 +16,6 @@ namespace Data.repositories
             if (_context != null)
             {
                 users = await _context.Users.ToListAsync();
-
             }
             return users;
         }
@@ -29,6 +28,15 @@ namespace Data.repositories
                 user = await _context.Users.FirstOrDefaultAsync(x => x.Id == userId) ?? new User();
             }
             return user;
+        }
+
+        public async Task UpdateUser(User user)
+        {
+            if (_context != null)
+            {
+                _context.Users.Update(user).State = EntityState.Modified;
+                await _context.SaveChangesAsync();
+            }
         }
     }
 }

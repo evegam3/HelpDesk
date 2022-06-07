@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Domain.models
 {
-    [Table("users")]
+    [Table("Users")]
     public class User : IdentityUser
     {
         [Column("DeparmentId")]
@@ -29,5 +29,10 @@ namespace Domain.models
         public ICollection<Ticket> ReportedTickets { get; set; }
         public ICollection<Comment> Comments { get; set; }
         public ICollection<LogTime> LogTimes { get; set; }
+
+        public virtual ICollection<IdentityUserClaim<string>> Claims { get; set; }
+        public virtual ICollection<IdentityUserLogin<string>> Logins { get; set; }
+        public virtual ICollection<IdentityUserToken<string>> Tokens { get; set; }
+        public virtual ICollection<UserRole> UserRoles { get; set; }
     }
 }

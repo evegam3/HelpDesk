@@ -13,8 +13,10 @@ namespace Domain.models
         [Column("Description")]
         public string Description { get; set; }
         [Column("CaseNumber")]
+        [NotMapped]
         public int CaseNumber { get; set; }
         [Column("ReportedBy")]
+        [NotMapped]
         public string ReportedBy { get; set; }
         [Column("AssignedTo")]
         public string AssignedTo { get; set; }

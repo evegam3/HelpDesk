@@ -17,6 +17,7 @@
                 <thead>
                     <tr role="row">
                         <th class="sorting sorting_asc"> Nombre </th>
+                        <th> Apellido </th>
                         <th> Email </th>
                         <th>  Creado en </th>
                         <th>Acciones</th>
@@ -25,8 +26,9 @@
                 <tfoot>
                     <tr>
                         <th> Nombre </th>
+                        <th> Apellido </th>
                         <th> Email </th>
-                        <th>  Creado en </th>
+                        <th> Creado en </th>
                         <th>Acciones</th>
                     </tr>
                 </tfoot>
@@ -37,15 +39,18 @@
                                 @Html.DisplayFor(modelItem => item.Name)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Email)
+                                @Html.DisplayFor(modelItem => item.Lastname)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.UserName)
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.CreatedAt)
                             </td>
                             <td>
-                                <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
-                                <a asp-action="Details" asp-route-id="@item.Id">Detalles</a> |
-                                <a asp-action="Delete" asp-route-id="@item.Id">Eliminar</a>
+                                <a asp-page="./Edit" asp-route-id="@item.Id">Editar</a> |
+                                <a asp-page="./Details" asp-route-id="@item.Id">Detalles</a> 
+                                @*|<a asp-action="Delete" asp-route-id="@item.Id">Eliminar</a>*@
                             </td>
                         </tr>
                     }

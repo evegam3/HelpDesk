@@ -6,5 +6,6 @@ namespace Data.services
     {
         public Task<List<UserDto>> GetUsers();
         public Task<UserDto> GetUserById(string userId);
+        public Task UpdateUserAsync(UserDto userDto);
     }
 }

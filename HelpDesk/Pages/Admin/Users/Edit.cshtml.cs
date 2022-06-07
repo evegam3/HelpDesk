@@ -7,15 +7,16 @@ using Microsoft.AspNetCore.Authorization;
 namespace HelpDesk.Pages.Admin.Users
 {
     [Authorize]
-    public class DetailsModel : PageModel
+    public class EditModel : PageModel
     {
         private readonly IUserService _userService;
 
-        public DetailsModel(IUserService userService)
+        public EditModel(IUserService userService)
         {
             _userService = userService;
         }
 
+        [BindProperty]
         public UserDto User { get; set; }
 
         public async Task<IActionResult> OnGetAsync(string id)
@@ -33,5 +34,15 @@ namespace HelpDesk.Pages.Admin.Users
             }
             return Page();
         }
+
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see https://aka.ms/RazorPagesCRUD.
+        public async Task<IActionResult> OnPostAsync()
+        {
+            await _userService.UpdateUserAsync(User);
+
+            return RedirectToPage("./Index");
+        }
+
     }
 }

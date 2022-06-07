@@ -2,21 +2,19 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Data.services;
 using Domain.models.dto;
-using Microsoft.AspNetCore.Authorization;
 
-namespace HelpDesk.Pages.Admin.Users
+namespace HelpDesk.Pages.Admin.Roles
 {
-    [Authorize]
     public class DetailsModel : PageModel
     {
-        private readonly IUserService _userService;
+        private readonly IRolService _rolService;
 
-        public DetailsModel(IUserService userService)
+        public DetailsModel(IRolService rolService)
         {
-            _userService = userService;
+            _rolService = rolService;
         }
 
-        public UserDto User { get; set; }
+        public RolDto Rol { get; set; }
 
         public async Task<IActionResult> OnGetAsync(string id)
         {
@@ -25,9 +23,9 @@ namespace HelpDesk.Pages.Admin.Users
                 return NotFound();
             }
 
-            User = await _userService.GetUserById(id);
+            Rol = await _rolService.GetRolById(id);
 
-            if (User == null)
+            if (Rol == null)
             {
                 return NotFound();
             }

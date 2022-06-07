@@ -3,11 +3,13 @@ using Domain.models;
 using Domain.models.dto;
 using HelpDesk.Areas.Identity.Pages.Account;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace HelpDesk.Pages.Admin.Users
 {
+    [Authorize]
     public class IndexModel : PageModel
     {
         private readonly SignInManager<User> _signInManager;

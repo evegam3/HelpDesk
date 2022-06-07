@@ -34,6 +34,12 @@ namespace Data
 
             CreateMap<LogTime, LogTimeDto>();
             CreateMap<LogTimeDto, LogTime>();
+
+            CreateMap<Rol, RolDto>();
+            CreateMap<RolDto, Rol>();
+
+            CreateMap<UserRole, UserRoleDto>();
+            CreateMap<UserRoleDto, UserRole>();
         }
     }
 }
