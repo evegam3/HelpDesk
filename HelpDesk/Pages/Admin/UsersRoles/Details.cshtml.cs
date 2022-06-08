@@ -1,32 +1,31 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
-using Data.context;
-using Domain.models;
+using Data.services;
+using Domain.models.dto;
+using Microsoft.AspNetCore.Authorization;
 
 namespace HelpDesk.Pages.Admin.UsersRoles
 {
+    [Authorize(Roles = "Admin")]
     public class DetailsModel : PageModel
     {
-        private readonly HelpDeskDbContext _context;
+        private readonly IUserRoleService _userRoleService;
 
-        public DetailsModel(HelpDeskDbContext context)
+        public DetailsModel(IUserRoleService userRoleuserService)
         {
-            _context = context;
+            _userRoleService = userRoleuserService;
         }
 
-        public UserRole UserRole { get; set; }
+        public UserRoleDto UserRole { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(string id)
+        public async Task<IActionResult> OnGetAsync(string rolId, string userId)
         {
-            if (id == null)
+            if (rolId == null || userId == null)
             {
                 return NotFound();
             }
 
-            UserRole = await _context.UserRoles
-                .Include(u => u.Role)
-                .Include(u => u.User).FirstOrDefaultAsync(m => m.UserId == id);
+            UserRole = await _userRoleService.GetRolesUsersByIds(rolId, userId);
 
             if (UserRole == null)
             {

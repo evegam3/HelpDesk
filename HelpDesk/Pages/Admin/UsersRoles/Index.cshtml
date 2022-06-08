@@ -6,38 +6,56 @@
     Layout = "~/Pages/Shared/_Layout.cshtml";
 }
 
-<h1>Roles de usuarios</h1>
-
-<p>
-    <a asp-page="Create">Asociar un nuevo rol</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.UserRole[0].User)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UserRole[0].Role)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model.UserRole) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.User.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Role.Id)
-            </td>
-            <td>
-                @Html.ActionLink("Editar", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Detalles", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Eliminar", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<h1 class="h3 mb-2 text-gray-800">Roles Asociados</h1>
+<a asp-page="Create">Asociar un nuevo rol</a>
+<br />
+<br />
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Lista de roles asociados a usuarios</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" @*id="dataTable"*@ width="100%" cellspacing="0">
+                <thead>
+                    <tr role="row">
+                        <th class="sorting sorting_asc">
+                            Usuario
+                        </th>
+                        <th>
+                            Rol
+                        </th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                 <tfoot>
+                    <tr>
+                       <th>
+                            Usuario
+                        </th>
+                        <th>
+                           Rol
+                        </th>
+                        <th>Acciones</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach (var item in Model.UserRole) {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.User.UserName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Role.Name)
+                            </td>
+                            <td>
+                                <a asp-page="./Details" asp-route-rolId="@item.RoleId" asp-route-userId="@item.UserId">Detalles</a> |
+                                <a asp-page="./Delete" asp-route-rolId="@item.RoleId" asp-route-userId="@item.UserId">Eliminar</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

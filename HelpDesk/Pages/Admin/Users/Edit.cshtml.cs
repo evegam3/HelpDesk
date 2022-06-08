@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace HelpDesk.Pages.Admin.Users
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class EditModel : PageModel
     {
         private readonly IUserService _userService;

@@ -2,9 +2,11 @@
 using Data.services;
 using Domain.models.dto;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace HelpDesk.Pages.Admin.Roles
 {
+    [Authorize(Roles = "Admin")]
     public class DeleteModel : PageModel
     {
         private readonly IRolService _rolService;

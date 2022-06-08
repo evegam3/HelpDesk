@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace HelpDesk.Pages.Admin.Users
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class IndexModel : PageModel
     {
         private readonly SignInManager<User> _signInManager;

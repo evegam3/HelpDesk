@@ -34,7 +34,11 @@ namespace Data.repositories
             var rol = new UserRole();
             if (_context != null)
             {
-                rol = await _context.UserRoles.FirstOrDefaultAsync(e => e.RoleId == rolId && e.UserId == userId) ?? new UserRole();
+                rol = await _context.UserRoles
+                    .Include(u => u.Role)
+                    .Include(u => u.User)
+                    .FirstOrDefaultAsync(e => e.RoleId == rolId && e.UserId == userId)
+                    ?? new UserRole();
             }
             return rol;
         }

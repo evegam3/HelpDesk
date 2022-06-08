@@ -1,26 +1,25 @@
 ﻿using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
-using Data.context;
-using Domain.models;
+using Data.services;
+using Domain.models.dto;
+using Microsoft.AspNetCore.Authorization;
 
 namespace HelpDesk.Pages.Admin.UsersRoles
 {
+    [Authorize(Roles = "Admin")]
     public class IndexModel : PageModel
     {
-        private readonly HelpDeskDbContext _context;
+        private readonly IUserRoleService _userRoleService;
 
-        public IndexModel(HelpDeskDbContext context)
+        public IndexModel(IUserRoleService userRoleuserService)
         {
-            _context = context;
+            _userRoleService = userRoleuserService;
         }
 
-        public IList<UserRole> UserRole { get;set; }
+        public IList<UserRoleDto> UserRole { get;set; }
 
         public async Task OnGetAsync()
         {
-            UserRole = await _context.UserRoles
-                .Include(u => u.Role)
-                .Include(u => u.User).ToListAsync();
+            UserRole = await _userRoleService.GetUserRoles();
         }
     }
 }

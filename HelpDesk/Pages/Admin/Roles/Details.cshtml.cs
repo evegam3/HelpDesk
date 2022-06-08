@@ -2,9 +2,11 @@
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Data.services;
 using Domain.models.dto;
+using Microsoft.AspNetCore.Authorization;
 
 namespace HelpDesk.Pages.Admin.Roles
 {
+    [Authorize(Roles = "Admin")]
     public class DetailsModel : PageModel
     {
         private readonly IRolService _rolService;

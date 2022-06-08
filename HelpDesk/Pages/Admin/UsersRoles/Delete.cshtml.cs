@@ -1,33 +1,32 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
-using Domain.models;
-using Data.context;
+using Data.services;
+using Domain.models.dto;
+using Microsoft.AspNetCore.Authorization;
 
 namespace HelpDesk.Pages.Admin.UsersRoles
 {
+    [Authorize(Roles = "Admin")]
     public class DeleteModel : PageModel
     {
-        private readonly HelpDeskDbContext _context;
+        private readonly IUserRoleService _userRoleService;
 
-        public DeleteModel(HelpDeskDbContext context)
+        public DeleteModel(IUserRoleService userRoleuserService)
         {
-            _context = context;
+            _userRoleService = userRoleuserService;
         }
 
         [BindProperty]
-        public UserRole UserRole { get; set; }
+        public UserRoleDto UserRole { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(string id)
+        public async Task<IActionResult> OnGetAsync(string rolId, string userId)
         {
-            if (id == null)
+            if (rolId == null || userId == null)
             {
                 return NotFound();
             }
 
-            UserRole = await _context.UserRoles
-                .Include(u => u.Role)
-                .Include(u => u.User).FirstOrDefaultAsync(m => m.UserId == id);
+            UserRole = await _userRoleService.GetRolesUsersByIds(rolId, userId);
 
             if (UserRole == null)
             {
@@ -36,19 +35,18 @@ namespace HelpDesk.Pages.Admin.UsersRoles
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(string id)
+        public async Task<IActionResult> OnPostAsync(string rolId, string userId)
         {
-            if (id == null)
+            if (rolId == null || userId == null)
             {
                 return NotFound();
             }
 
-            UserRole = await _context.UserRoles.FindAsync(id);
+            UserRole = await _userRoleService.GetRolesUsersByIds(rolId, userId);
 
             if (UserRole != null)
             {
-                _context.UserRoles.Remove(UserRole);
-                await _context.SaveChangesAsync();
+                await _userRoleService.RemoveRolesUsers(UserRole);
             }
 
             return RedirectToPage("./Index");

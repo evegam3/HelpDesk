@@ -3,9 +3,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Data.services;
 using Domain.models.dto;
+using Microsoft.AspNetCore.Authorization;
 
 namespace HelpDesk.Pages.Admin.Roles
 {
+    [Authorize(Roles = "Admin")]
     public class EditModel : PageModel
     {
         private readonly IRolService _rolService;
