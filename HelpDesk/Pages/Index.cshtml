@@ -4,3 +4,107 @@
     ViewData["Title"] = "Inicio";
 }
 
+<div class="row">
+    <div class="col-md-12 d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+        <br/>
+        <br/>
+    </div>
+    <div class="col-md-4">
+        <div class="col-md-10">
+            <br/>
+            <h5 class="text-gray">En Desarrollo</h5>
+            <br/>
+            @foreach (var item in Model.TicketInDev)
+            {
+                <a style="text-decoration: none;" href="~/Tickets/Details?id=@item.TicketId">
+                    <div class="card border-left-warning shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="h6 text-xss font-weight-bold text-warning text-uppercase mb-1">
+                                        Ticket-@Html.DisplayFor(modelItem => item.TicketId)
+                                    </div>
+                                
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.GetUserName(item.AssignedTo)</div>
+                                    <div class="h6 mb-0 text-gray-800 top1">Prioridad: @item.Priority.Name</div>
+                                    <div class="h6 mb-0 text-gray-800 ">Categoria: @item.Category.Name</div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-comments fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <br/>
+                <br/>
+            }
+        </div>
+    </div>
+
+    <div class="col-md-4">
+       <div class="col-md-10">
+            <br/>
+            <h5 class="text-gray">En QA</h5>
+            <br/>
+             @foreach (var item in Model.TicketInQA)
+             {
+                <a style="text-decoration: none;" href="~/Tickets/Details?id=@item.TicketId">
+                    <div class="card border-left-primary shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="h6 text-xss font-weight-bold text-primary text-uppercase mb-1">
+                                       Ticket-@Html.DisplayFor(modelItem => item.TicketId)
+                                    </div>
+                                     <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.GetUserName(item.AssignedTo)</div>
+                                    <div class="h6 mb-0 text-gray-800 top1">Prioridad: @item.Priority.Name</div>
+                                    <div class="h6 mb-0 text-gray-800">Categoria: @item.Category.Name</div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <br/>
+                <br/>
+             }
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="col-md-10">
+            <br/>
+            <h5 class="text-gray">Terminado</h5>
+            <br/>
+            @foreach (var item in Model.TicketDone)
+             {
+                <a style="text-decoration: none;" href="~/Tickets/Details?id=@item.TicketId">
+                    <div class="card border-left-success shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="h6 text-xss font-weight-bold text-success text-uppercase mb-1">
+                                       Ticket-@Html.DisplayFor(modelItem => item.TicketId)
+                                    </div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">@Model.GetUserName(item.AssignedTo)</div>
+                                    <div class="h6 mb-0 text-gray-800 top1">Prioridad: @item.Priority.Name</div>
+                                    <div class="h6 mb-0 text-gray-800">Categoria: @item.Category.Name</div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <br/>
+                <br/>
+             }
+            
+        </div>
+    </div>
+</div>

@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System.Reflection.Emit;
 
 namespace Data.context
 {
@@ -31,11 +30,6 @@ namespace Data.context
         {
             base.OnModelCreating(builder);
 
-            // Config foreign keys
-            builder.Entity<User>(x => x
-                .HasMany(c => c.ReportedTickets)
-                .WithOne(e => e.ReportedByUser)
-            );
             builder.Entity<User>(x => x
                .HasMany(c => c.Comments)
                .WithOne(e => e.User)

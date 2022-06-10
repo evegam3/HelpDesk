@@ -274,10 +274,6 @@ namespace Data.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("AssignedTo");
 
-                    b.Property<string>("AssignedToUserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<int>("CaseNumber")
                         .HasColumnType("int")
                         .HasColumnName("CaseNumber");
@@ -304,10 +300,6 @@ namespace Data.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("ReportedBy");
 
-                    b.Property<string>("ReportedByUserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<int>("StatusId")
                         .HasColumnType("int")
                         .HasColumnName("StatusId");
@@ -318,13 +310,9 @@ namespace Data.Migrations
 
                     b.HasKey("TicketId");
 
-                    b.HasIndex("AssignedToUserId");
-
                     b.HasIndex("CategoryId");
 
                     b.HasIndex("PriorityId");
-
-                    b.HasIndex("ReportedByUserId");
 
                     b.HasIndex("StatusId");
 
@@ -608,12 +596,6 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Domain.models.Ticket", b =>
                 {
-                    b.HasOne("Domain.models.User", "AssignedToUser")
-                        .WithMany("AssignedTickets")
-                        .HasForeignKey("AssignedToUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Domain.models.Category", "Category")
                         .WithMany("Tickets")
                         .HasForeignKey("CategoryId")
@@ -626,25 +608,15 @@ namespace Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Domain.models.User", "ReportedByUser")
-                        .WithMany("ReportedTickets")
-                        .HasForeignKey("ReportedByUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Domain.models.Status", "Status")
                         .WithMany("Tickets")
                         .HasForeignKey("StatusId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("AssignedToUser");
-
                     b.Navigation("Category");
 
                     b.Navigation("Priority");
-
-                    b.Navigation("ReportedByUser");
 
                     b.Navigation("Status");
                 });
@@ -742,13 +714,9 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Domain.models.User", b =>
                 {
-                    b.Navigation("AssignedTickets");
-
                     b.Navigation("Comments");
 
                     b.Navigation("LogTimes");
-
-                    b.Navigation("ReportedTickets");
                 });
 #pragma warning restore 612, 618
         }

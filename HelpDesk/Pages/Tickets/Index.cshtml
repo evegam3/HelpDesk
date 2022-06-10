@@ -1,0 +1,96 @@
+﻿@page
+@model HelpDesk.Pages.Tickets.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+<h1 class="h3 mb-2 text-gray-800">Tickets</h1>
+<p>
+    <a asp-page="Create">Agregar Nuevo Ticket</a>
+</p>
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Lista de todos los tickets</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" @*id="dataTable"*@ width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>
+                            Ticket
+                        </th>
+                        <th>
+                            Descripción
+                        </th>
+                        <th>
+                            Asignado A
+                        </th>
+                        <th>
+                           Prioridad
+                        </th>
+                        <th>
+                            Categoría
+                        </th>
+                        <th>
+                            Estado
+                        </th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                     <tr>
+                         <th>
+                            Ticket
+                        </th>
+                        <th>
+                            Descripción
+                        </th>
+                        <th>
+                            Asignado A
+                        </th>
+                        <th>
+                           Prioridad
+                        </th>
+                        <th>
+                            Categoría
+                        </th>
+                        <th>
+                            Estado
+                        </th>
+                        <th>Acciones</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach (var item in Model.Ticket) {
+                        <tr>
+                            <td>
+                               Ticket-@item.TicketId
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Description)
+                            </td>
+                            <td>
+                                @Model.GetUserName(item.AssignedTo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Priority.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Category.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Status.Name)
+                            </td>
+                            <td>
+                                <a asp-page="./Edit" asp-route-id="@item.TicketId">Editar</a> |
+                                <a asp-page="./Details" asp-route-id="@item.TicketId">Detalles</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

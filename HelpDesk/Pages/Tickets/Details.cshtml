@@ -1,0 +1,59 @@
+﻿@page
+@model HelpDesk.Pages.Tickets.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Detalles</h1>
+
+ <div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Ticket-@Model.Ticket.TicketId</h6>
+    </div>
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-2">
+               Descripción
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Ticket.Description)
+            </dd>
+            <dt class="col-sm-2">
+               Reportado por
+            </dt>
+            <dd class="col-sm-10">
+                @Model.GetUserName(Model.Ticket.ReportedBy)
+            </dd>
+            <dt class="col-sm-2">
+                Asignado a
+            </dt>
+            <dd class="col-sm-10">
+                 @Model.GetUserName(Model.Ticket.AssignedTo)
+            </dd>
+            <dt class="col-sm-2">
+                Prioridad
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Ticket.Priority.Name)
+            </dd>
+            <dt class="col-sm-2">
+                Categoria
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Ticket.Category.Name)
+            </dd>
+            <dt class="col-sm-2">
+                Estado
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Ticket.Status.Name)
+            </dd>
+        </dl>
+        <div>
+            <a asp-page="./Edit" asp-route-id="@Model.Ticket.TicketId">Editar</a> |
+            <a asp-page="./Index">Regreso a lista</a>
+        </div>
+    </div>
+</div>

@@ -1,5 +1,4 @@
 ﻿using Domain.models;
-using Domain.models.dto;
 
 namespace Data.repositories
 {
@@ -8,5 +7,6 @@ namespace Data.repositories
         public Task<List<User>> GetUsers();
         public Task<User> GetUserById(string userId);
         public Task UpdateUser(User user);
+        public string GetUserName(string userId);
     }
 }

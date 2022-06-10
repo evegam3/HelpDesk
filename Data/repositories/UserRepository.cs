@@ -30,6 +30,16 @@ namespace Data.repositories
             return user;
         }
 
+        public string GetUserName(string userId)
+        {
+            var user = new User();
+            if (_context != null)
+            {
+                user = _context.Users.Find(userId) ?? new User();
+            }
+            return string.Concat(user.Name, " ", user.Lastname);
+        }
+
         public async Task UpdateUser(User user)
         {
             if (_context != null)

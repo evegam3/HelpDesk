@@ -1,0 +1,55 @@
+﻿@page
+@model HelpDesk.Pages.Ticket.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Agregar Nuevo Ticket</h1>
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Ticket</h6>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-6">
+                <form method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label class="control-label">Descripción</label>
+                        <textarea id="Description" asp-for="Ticket.Description" class="form-control" > </textarea>
+                        <span asp-validation-for="Ticket.Description" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Asignar A</label>
+                        <select asp-for="Ticket.AssignedTo" class ="form-control" asp-items="ViewBag.UserId"></select>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Prioridad del ticket</label>
+                        <select asp-for="Ticket.PriorityId" class ="form-control" asp-items="ViewBag.PriorityId"></select>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Categoría</label>
+                        <select asp-for="Ticket.CategoryId" class ="form-control" asp-items="ViewBag.CategoryId"></select>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Estado del ticket</label>
+                        <select asp-for="Ticket.StatusId" class ="form-control" asp-items="ViewBag.StatusId"></select>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Crear" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div>
+            <a asp-page="Index">Regresar a la lista</a>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

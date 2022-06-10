@@ -11,12 +11,11 @@ namespace Domain.models
         [Column("TicketId")]
         public int TicketId { get; set; }
         [Column("Description")]
+        [Required]
         public string Description { get; set; }
         [Column("CaseNumber")]
-        [NotMapped]
         public int CaseNumber { get; set; }
         [Column("ReportedBy")]
-        [NotMapped]
         public string ReportedBy { get; set; }
         [Column("AssignedTo")]
         public string AssignedTo { get; set; }
@@ -30,10 +29,7 @@ namespace Domain.models
         public DateTime CreatedAt { get; set; }
         [Column("UpdatedAt")]
         public DateTime? UpdatedAt { get; set; }
-        [NotMapped]
-        public User ReportedByUser { get; set; }
-        [NotMapped]
-        public User AssignedToUser { get; set; }
+
         public Priority Priority { get; set; }
         public Category Category { get; set; }
         public Status Status { get; set; }

@@ -25,8 +25,6 @@ namespace Domain.models
 
 
         public Deparment Deparment { get; set; }
-        public ICollection<Ticket> AssignedTickets { get; set; }
-        public ICollection<Ticket> ReportedTickets { get; set; }
         public ICollection<Comment> Comments { get; set; }
         public ICollection<LogTime> LogTimes { get; set; }
 
